@@ -140,5 +140,11 @@ contract DUC is SafeMath, StandardToken {
         totalSupply = safeAdd(totalSupply, tokens);
         owner.transfer(this.balance);
     }
+    
+    function changeOracle(address _oracle) external onlyOracle {
+      oracle = _oracle;
+    }
+
+
 
 }
