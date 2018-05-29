@@ -1,5 +1,6 @@
 pragma solidity ^0.4.10;
 
+// ONLY FOR TEST USE!
 contract SafeMath {
 
     function safeAdd(uint256 x, uint256 y) internal returns(uint256) {
@@ -104,6 +105,7 @@ contract DUC is SafeMath, StandardToken {
     }
 
     event create(address indexed _to, uint256 _value);
+    event burnToken(address from, uint256 _value, int _network, bytes32 _adr);
 
     function DUC(address _owner, address _oracle) {
         oracle = _oracle;
@@ -144,7 +146,13 @@ contract DUC is SafeMath, StandardToken {
     function changeOracle(address _oracle) external onlyOracle {
       oracle = _oracle;
     }
-
-
+    
+    function exchangeToken(uint256 _value, int _network, bytes32 _adr) {
+        uint256 tokens = _value*10**decimals;
+        if (balances[msg.sender] < tokens) revert();
+        balances[msg.sender] -= tokens;
+        totalSupply = safeSubtract(totalSupply, tokens);
+        burnToken(msg.sender, _value, _network, _adr);
+    }
 
 }
