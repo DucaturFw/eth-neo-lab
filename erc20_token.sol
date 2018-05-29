@@ -1,6 +1,17 @@
 pragma solidity ^0.4.10;
 
 // ONLY FOR TEST USE!
+/**
+ * Copyright (C) 2018  Ducatur, LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License").
+ * You may not use this file except in compliance with the License.
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND (express or implied).
+ */
+ 
 contract SafeMath {
 
     function safeAdd(uint256 x, uint256 y) internal returns(uint256) {
